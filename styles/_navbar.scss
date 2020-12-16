@@ -1,0 +1,154 @@
+@import 'colors';
+@import 'media-queries';
+
+%align-center {
+  display: flex;
+  align-items: center;
+}
+
+body {
+
+  &.open {
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+}
+
+.navbar {
+  background: $light - 5;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem calc((100vw - 1200px) / 2);
+  font-weight: 700; 
+  box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+  position: relative;
+
+// .navbar__logo {
+//   color: $orangeRed;
+// }
+
+// SHORTCUT FOR CLASS
+&__logo {
+  color: $dark;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  margin-left: 24px;
+  @extend %align-center;
+  }
+
+&__bars {
+  opacity: 0;
+  z-index: 2;  
+
+  @include tablet {
+    color: $dark;
+    opacity: 1;
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    font-size: 2rem;
+  }
+
+  &--btn {
+    color: $dark;
+  }
+
+  &--btn:link {
+    color: $dark;
+  }
+
+  &--btn:hover {
+    color: $lime;
+    transition: all .5s;
+  }  
+
+  &.open {
+    position: fixed;
+    overflow: auto;
+  }
+}
+
+&__menu {
+  // @extend %align-center;
+  list-style: none;
+  text-align: center;
+  margin-right: 24px;  
+  display: flex;
+  width: 50%;
+  // background: lightcoral;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: auto;
+
+  @include tablet {
+    position: fixed;
+    background: $light - 15;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    // display: none;    
+    // Prevent from clicking on Hero instead of hamburger links
+    pointer-events: none;
+    // Mask CSS
+    clip-path: circle(100px at 90% -100%);
+    -webkit-clip-path: circle(100px at 90% -100%);
+    transition: all 1s ease-out;
+    // fade
+    & a {
+      opacity: 0;
+      font-size: 25px;
+      transition: all .7s ease .05s;
+    }        
+    // & a:hover{
+    //   background-color: yellow;      
+    // }
+    & a.fade {
+      opacity: 1;      
+    }
+
+    &.open {
+      clip-path: circle(1000px at 90% -15%);
+      -webkit-clip-path: circle(1000px at 90% -15%);
+      // Make pointer clickable when animate is open
+      pointer-events: all;
+    }
+  }
+
+  &--links {
+    color: $dark;
+    @extend %align-center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+
+    @include tablet {
+      
+    }
+
+    &:hover {
+      color: $lime;
+      transition: all .5s ease;
+    }
+  }
+
+  #button {
+    padding: 12px 24px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: $lime;
+    margin-left: 16px;
+    color: $light;    
+
+    &:hover {
+      background: $orangeRed;
+      transition: all .5s ease;
+    }
+  }
+}
+
+}
